@@ -16,7 +16,7 @@ class ViewController: UIViewController {
         viewLayout.itemSize = CGSize(width: itemWidth, height: 400)
         viewLayout.scrollDirection = .horizontal
         viewLayout.minimumLineSpacing = itemSpacing
-        
+        viewLayout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: viewLayout)
         collectionView.showsHorizontalScrollIndicator = false
@@ -33,6 +33,9 @@ class ViewController: UIViewController {
     private func setupViews() {
         view.backgroundColor = .white
         view.addSubview(collectionView)
+        
+        navigationController?.navigationBar.prefersLargeTitles = true
+        title = "Collection"
         
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -61,6 +64,7 @@ extension ViewController: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "myCell", for: indexPath)
         cell.backgroundColor = .systemGray
         cell.layer.cornerRadius = 8
+        cell.layer.cornerCurve = .continuous
         return cell
     }
 }
